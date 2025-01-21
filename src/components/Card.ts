@@ -65,7 +65,7 @@ export class Card extends Component<ICard> {
         this.setText(this._price, value ? `${value} синапсов` : 'Бесценно');
         if (this._button) {
             // Если кнопка существует, делаем её неактивной, если цена отсутствует
-            this._button.disabled = !value;
+            this.setDisabled(this._button, !value);
         }
     }
 
@@ -78,11 +78,9 @@ export class Card extends Component<ICard> {
         this.setText(this._category, value); // Устанавливаем текст категории
         if (this._category) {
             // Добавляем CSS-класс для категории (если категория не найдена, используется "other")
-            this._category.classList.add(
-                `card__category_${
+            this.toggleClass(this._category, `card__category_${
                     categories.get(value) ? categories.get(value) : 'other'
-                }`
-            );
+                }`, true);
         }
     }
 

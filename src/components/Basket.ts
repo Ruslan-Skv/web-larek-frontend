@@ -1,6 +1,6 @@
-import { cloneTemplate, createElement, ensureElement } from "../../utils/utils";
-import { View } from "../base/Component";
-import { IEvents } from "../base/events";
+import { cloneTemplate, createElement, ensureElement } from "../utils/utils";
+import { View } from "./base/Component";
+import { IEvents } from "./base/events";
 
 // Интерфейс для представления состояния корзины
 interface IBasketView {
@@ -49,19 +49,29 @@ export class Basket extends View<IBasketView> {
     // Сеттер для обновления списка товаров
     set items(items: HTMLElement[]) {
         if (items.length) {
-            // Если список товаров не пуст, заменяем содержимое списка на новые элементы
-            this._list.replaceChildren(...items);
-            // Активируем кнопку оформления заказа
-            this.toggleButton(true);
+        // Если список товаров не пуст, заменяем содержимое списка на новые элементы
+        this._list.replaceChildren(
+            ...items.map((item, index) => {
+                // Находим элемент для отображения индекса
+                const indexElement = item.querySelector('.basket__item-index');
+                if (indexElement) {
+                    // Обновляем текст индекса
+                    indexElement.textContent = `${index + 1}`;
+                }
+                return item;
+            })
+        );          
+        // Активируем кнопку оформления заказа
+        this.toggleButton(true);
         } else {
-            // Если список товаров пуст, отображаем сообщение "Корзина пуста"
-            this._list.replaceChildren(
-                createElement<HTMLParagraphElement>('p', {
-                    textContent: 'Корзина пуста',
-                })
-            );
-            // Деактивируем кнопку оформления заказа
-            this.toggleButton(false);
+        // Если список товаров пуст, отображаем сообщение "Корзина пуста"
+        this._list.replaceChildren(
+            createElement<HTMLParagraphElement>('p', {
+                textContent: 'Корзина пуста',
+            })
+        );
+        // Деактивируем кнопку оформления заказа
+        this.toggleButton(false);
         }
     }
 

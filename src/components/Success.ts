@@ -1,6 +1,6 @@
-import { ensureElement } from "../../utils/utils";
-import { View } from "../base/Component";
-import { IEvents } from "../base/events";
+import { ensureElement } from "../utils/utils";
+import { View } from "./base/Component";
+import { IEvents } from "./base/events";
 
 // Интерфейс данных для компонента Success
 interface ISuccess {

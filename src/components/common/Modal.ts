@@ -41,7 +41,7 @@ export class Modal extends Component<IModalData> {
     // Метод для открытия модального окна
     open() {
         // Добавляем CSS-класс, чтобы сделать модальное окно видимым
-        this.container.classList.add('modal_active');
+        this.toggleClass(this.container, 'modal_active', true);
 
         // Генерируем событие "modal:open"
         this.events.emit('modal:open');
@@ -50,7 +50,7 @@ export class Modal extends Component<IModalData> {
     // Метод для закрытия модального окна
     close() {
         // Удаляем CSS-класс, чтобы скрыть модальное окно
-        this.container.classList.remove('modal_active');
+        this.toggleClass(this.container, 'modal_active', false);
 
         // Очищаем содержимое модального окна
         this.content = null;

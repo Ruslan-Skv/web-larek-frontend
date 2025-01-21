@@ -54,7 +54,7 @@ export class Form<T> extends View<IFormState> {
     // Сеттер для управления валидностью формы
     set valid(value: boolean) {
         // Если форма валидна, кнопка отправки активна; если нет — кнопка неактивна
-        this._submit.disabled = !value;
+        this.setDisabled(this._submit, !value);
     }
 
     // Сеттер для отображения ошибок формы

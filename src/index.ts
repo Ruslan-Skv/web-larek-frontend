@@ -1,9 +1,8 @@
 import { AppData } from './components/AppData';
 import { EventEmitter } from './components/base/events';
 import { Card } from './components/Card';
-import { Basket } from './components/common/Basket';
+import { Basket } from './components/Basket';
 import { Modal } from './components/common/Modal';
-import { Success } from './components/common/Success';
 import { ContactsForm } from './components/ContactsForm';
 import { LarekAPI } from './components/LarekApi';
 import { OrderForm } from './components/OrderForm';
@@ -12,6 +11,7 @@ import './scss/styles.scss';
 import { ICard, TOrder } from './types';
 import { API_URL, CDN_URL } from './utils/constants';
 import { cloneTemplate, ensureElement } from './utils/utils';
+import { Success } from './components/Success';
 
 
 // Создание экземпляра API-клиента
